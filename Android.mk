@@ -6,6 +6,6 @@
 
 LOCAL_PATH := $(call my-dir)
 
-ifeq ($(TARGET_DEVICE),mondrian)
+ifeq ($(TARGET_DEVICE),babylon)
 include $(call all-subdir-makefiles,$(LOCAL_PATH))
 endif
