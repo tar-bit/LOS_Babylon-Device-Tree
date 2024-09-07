@@ -8,7 +8,7 @@
 
 set -e
 
-DEVICE=generic
+DEVICE=babylon
 VENDOR=xiaomi
 
 # Load extract_utils and do some sanity checks
