@@ -1,4 +1,4 @@
-# Android device tree for Android mainline (generic)
+# Android device tree for Xiaomi Mix Fold 3 (Babylon)
 
 ```
 #
