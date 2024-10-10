@@ -103,8 +103,11 @@ PRODUCT_PACKAGES += \
     init.recovery.qcom.rc \
     miui.factoryreset.rc \
 
-PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/rootdir/etc/fstab.qcom:$(TARGET_VENDOR_RAMDISK_OUT)/first_stage_ramdisk/fstab.qcom
+#PRODUCT_COPY_FILES += \
+#    $(LOCAL_PATH)/rootdir/etc/fstab.qcom:$(TARGET_VENDOR_RAMDISK_OUT)/first_stage_ramdisk/fstab.qcom
+#ODM_MANIFEST_FILES := $(LOCAL_PATH)/rootdir/etc/vintf/manifest_fuxi.xml
+ODM_MANIFEST_FILES := vendor/xiaomi/babylon/proprietary/odm/etc/vintf/manifest_fuxi.xml
+vintf_fragments := vendor/xiaomi/babylon/proprietary/odm/etc/vintf/manifest_fuxi.xml
 
 # Soong namespaces
 PRODUCT_SOONG_NAMESPACES += \
