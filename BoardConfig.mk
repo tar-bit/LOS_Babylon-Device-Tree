@@ -7,7 +7,7 @@
 DEVICE_PATH := device/xiaomi/babylon
 
 # For building with minimal manifest
-ALLOW_MISSING_DEPENDENCIES := true
+#ALLOW_MISSING_DEPENDENCIES := true
 
 # A/B
 AB_OTA_UPDATER := true
