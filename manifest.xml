@@ -6,7 +6,7 @@
 
     <project path="device/xiaomi/babylon" name="device/xiaomi/babylon" remote="lineage" revision="refs/heads/lineage-21.0" />
     <project path="kernel/xiaomi/babylon" name="kernel/xiaomi/babylon" remote="lineage" revision="refs/heads/lineage-21.0" />
-    <project path="/device/xiaomi/babylon/manifest_fuxi.xml" name="/device/xiaomi/babylon/manifest_fuxi.xml" remote="vendor" revision="refs/heads/lineage-21.0" />
+    <project path="device/xiaomi/babylon/manifest_fuxi.xml" name="device/xiaomi/babylon/manifest_fuxi.xml" remote="vendor" revision="refs/heads/lineage-21.0" />
 
     <!-- Add any additional required projects -->
     <!-- <project path="path/to/other/component" name="repository/name" remote="vendor" revision="branch" /> -->
