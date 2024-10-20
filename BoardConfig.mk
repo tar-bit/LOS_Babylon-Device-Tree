@@ -4,6 +4,12 @@
 # SPDX-License-Identifier: Apache-2.0
 #
 
+# Inherit from xiaomi sm8550-common
+include device/xiaomi/sm8550-common/BoardConfigCommon.mk
+
+# Inherit the proprietary files
+include vendor/xiaomi/babylon/BoardConfigVendor.mk
+
 DEVICE_PATH := device/xiaomi/babylon
 
 # For building with minimal manifest
@@ -128,9 +134,6 @@ BOARD_AVB_VENDOR_BOOT_ROLLBACK_INDEX_LOCATION := 1
 DEVICE_MANIFEST_FILE += $(DEVICE_PATH)/manifest.xml
 
 #ODM_MANIFEST_FILES += device/xiaomi/babylon/manifest/manifest_fuxi.xml
-
-# Inherit the proprietary files
-include vendor/xiaomi/generic/BoardConfigVendor.mk
 
 #prevents errors?
 BOARD_VNDK_VERSION := 30
