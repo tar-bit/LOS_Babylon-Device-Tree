@@ -4,6 +4,12 @@
 # SPDX-License-Identifier: Apache-2.0
 #
 
+# Inherit from xiaomi sm8550-common
+$(call inherit-product, device/xiaomi/sm8550-common/common.mk)
+
+# Inherit the proprietary files
+$(call inherit-product, vendor/xiaomi/babylon/babylon-vendor.mk)
+
 # Enable updating of APEXes
 $(call inherit-product, $(SRC_TARGET_DIR)/product/updatable_apex.mk)
 
@@ -110,5 +116,4 @@ PRODUCT_PACKAGES += \
 PRODUCT_SOONG_NAMESPACES += \
     $(LOCAL_PATH)
 
-# Inherit the proprietary files
-$(call inherit-product, vendor/xiaomi/babylon/babylon-vendor.mk)
+
