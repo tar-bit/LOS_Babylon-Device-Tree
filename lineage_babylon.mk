@@ -18,7 +18,7 @@ $(call inherit-product, device/xiaomi/babylon/device.mk)
 PRODUCT_DEVICE := babylon
 PRODUCT_NAME := lineage_babylon
 PRODUCT_BRAND := Android
-PRODUCT_MODEL := mainline
+PRODUCT_MODEL := Mix Fold 3
 PRODUCT_MANUFACTURER := xiaomi
 
 PRODUCT_GMS_CLIENTID_BASE := android-xiaomi
