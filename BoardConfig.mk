@@ -30,7 +30,7 @@ AB_OTA_PARTITIONS += \
     dtbo \
     init_boot \
     system
-BOARD_USES_RECOVERY_AS_BOOT := true
+#BOARD_USES_RECOVERY_AS_BOOT := true
 
 # Architecture
 TARGET_ARCH := arm64
@@ -59,14 +59,32 @@ BOARD_BOOTIMG_HEADER_VERSION := 4
 BOARD_KERNEL_BASE := 0x00000000
 BOARD_KERNEL_CMDLINE := video=vfb:640x400,bpp=32,memsize=3072000 disable_dma32=on swinfo.fingerprint=babylon:13/V816.0.10.0.UMVCNXM:user mtdoops.fingerprint=babylon:13/V816.0.10.0.UMVCNXM:user bootconfig
 BOARD_KERNEL_PAGESIZE := 4096
-BOARD_MKBOOTIMG_ARGS += --header_version $(BOARD_BOOTIMG_HEADER_VERSION)
+BOARD_MKBOOTIMG_ARGS += --header_version $(BOARD_BOOTIMG_HEADER_VERSION) --dtb $(TARGET_PREBUILT_DTB)
 BOARD_KERNEL_IMAGE_NAME := Image
-#BOARD_INCLUDE_DTB_IN_BOOTIMG := true
-#BOARD_KERNEL_SEPARATED_DTBO := true
-TARGET_KERNEL_CONFIG := generic_defconfig
-TARGET_KERNEL_SOURCE := kernel/xiaomi/sm8550-common
+BOARD_USES_GENERIC_KERNEL_IMAGE := true
+BOARD_RAMDISK_USE_LZ4 := true
+
+TARGET_KERNEL_CONFIG := \
+    gki_defconfig \
+    vendor/kalama_GKI.config \
+    vendor/babylon_GKI.config
+    
+TARGET_KERNEL_SOURCE := kernel/xiaomi/sm8550
 BOARD_EXCLUDE_KERNEL_FROM_RECOVERY_IMAGE := true
+
+KERNEL_LTO := none
+
+
+
+####### Dtb/o #######
+BOARD_INCLUDE_DTB_IN_BOOTIMG := true
+#BOARD_KERNEL_SEPARATED_DTBO := true
+#BOARD_PREBUILT_DTBOIMAGE := $(DEVICE_PATH)/prebuilts/dtbo.img
 TARGET_NEEDS_DTBOIMAGE := true
+BOARD_USES_QCOM_MERGE_DTBS_SCRIPT := true
+TARGET_PREBUILT_DTB := $(DEVICE_PATH)/prebuilts/dtb.img
+
+
 
 # Kernel (modules)
 TARGET_KERNEL_EXT_MODULE_ROOT := kernel/xiaomi/sm8550-modules
@@ -95,6 +113,20 @@ TARGET_KERNEL_EXT_MODULES := \
 	qcom/opensource/wlan/qcacld-3.0/.kiwi_v2 \
 	qcom/opensource/bt-kernel \
 	nxp/opensource/driver
+	
+
+BOOT_KERNEL_MODULES := $(strip $(shell cat $(DEVICE_PATH)/modules.load.recovery))
+BOOT_KERNEL_MODULES += \
+    q6_pdr_dlkm.ko \
+    q6_notifier_dlkm.ko \
+    snd_event_dlkm.ko \
+    gpr_dlkm.ko \
+    spf_core_dlkm.ko \
+    adsp_loader_dlkm.ko \
+    qti_battery_charger.ko
+BOARD_VENDOR_KERNEL_MODULES_LOAD := $(strip $(shell cat $(DEVICE_PATH)/modules.load.vendor_dlkm))
+BOARD_VENDOR_RAMDISK_KERNEL_MODULES_LOAD := $(strip $(shell cat $(DEVICE_PATH)/modules.load.first_stage))
+BOARD_VENDOR_RAMDISK_RECOVERY_KERNEL_MODULES_LOAD  := $(strip $(shell cat $(DEVICE_PATH)/modules.load.recovery))
 
 # Kernel - prebuilt
 TARGET_FORCE_PREBUILT_KERNEL := false
@@ -170,4 +202,3 @@ BOARD_VNDK_VERSION := 30
 BUILD_BROKEN_VINTF_PRODUCT_COPY_FILES := true
 BUILD_BROKEN_DUP_RULES=true
 BUILD_BROKEN_ELF_PREBUILT_PRODUCT_COPY_FILES := true
-
